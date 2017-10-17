@@ -1,8 +1,15 @@
 {{#each hits}}
 
-    <div class="navbar-dark bg-primary p-3 m-4">
-        <p>{{title}}</p>
-        <p>{{link}}</p>
+    <div class="card border-info m-3">
+        <h4 class="card-header">            
+            <button type="button" class="btn btn-success">Save Article</button>
+        </h4>
+        
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="{{link}}">{{title}}</a>
+            </h4>
+        </div>
     </div>
 
 {{/each}}
