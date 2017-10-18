@@ -39,13 +39,11 @@ router.get("/scrape", function (req, res) {
             });
         });
 
-        var hdbObj = {hits: results}
-        console.log(hdbObj);
+        var hdbObj = {hits: results};
+        res.json(results);
         // res.json(hdbObj);
-        res.render("index", hdbObj);
     });
 });
-
 
 router.get("/saved", function (req, res) {
     

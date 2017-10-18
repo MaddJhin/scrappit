@@ -39,10 +39,9 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-
 // Routing
 // =======================================================
-var htmlRoutes = require("./controllers/scrapeRoutes.js");
+var htmlRoutes = require("./routes/htmlRoutes.js");
 
 app.use(htmlRoutes);
 
