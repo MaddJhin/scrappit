@@ -18,8 +18,8 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
-router.post("/", function (req, res) {
-    
+router.get('/scrape', function(req, res){
+
     request('https://www.reddit.com/r/DestinyTheGame/', function (error, response, body) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -39,13 +39,11 @@ router.post("/", function (req, res) {
             });
         });
 
-        var hdbObj = {hits: results}
-        console.log(hdbObj);
+        var hdbObj = {hits: results};
+        res.json(results);
         // res.json(hdbObj);
-        res.render("index", hdbObj);
     });
 });
-
 
 router.get("/saved", function (req, res) {
     

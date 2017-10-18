@@ -32,10 +32,9 @@ db.on("error", function(error) {
 });
 
 
-
 // Routing
 // =======================================================
-var htmlRoutes = require("./controllers/scrapeRoutes.js");
+var htmlRoutes = require("./routes/htmlRoutes.js");
 
 app.use(htmlRoutes);
 
