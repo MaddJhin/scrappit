@@ -18,7 +18,7 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
-router.post("/", function (req, res) {
+router.get("/scrape", function (req, res) {
     
     request('https://www.reddit.com/r/DestinyTheGame/', function (error, response, body) {
         console.log('error:', error); // Print the error if one occurred
@@ -59,6 +59,10 @@ router.get("/saved", function (req, res) {
           res.json(found);
         }
     });
+
+});
+
+router.post("/save", function (req, res) {
 
 });
 

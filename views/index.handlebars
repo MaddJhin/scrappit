@@ -1,9 +1,11 @@
 {{#each hits}}
 
     <div class="card border-info m-3">
-        <h4 class="card-header">            
-            <button type="button" class="btn btn-success">Save Article</button>
-        </h4>
+        <form action="/save" method="POST">
+            <h4 class="card-header">            
+                <button type="button" class="btn btn-success">Save Article</button>
+            </h4>
+        </form>
         
         <div class="card-body">
             <h4 class="card-title">
