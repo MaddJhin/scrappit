@@ -71,6 +71,9 @@ router.post("/removePost", function (req, res) {
     console.log("Removing Post", req.body);
     db.Post
         .remove(req.body)
+        .then(function(dbPost){
+            res.json(dbPost);
+        })
         .catch(function (derp) {
             res.json(derp);
         });
