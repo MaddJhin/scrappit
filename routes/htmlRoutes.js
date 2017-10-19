@@ -4,14 +4,12 @@ const express = require("express")
 
 var router = express.Router();
 
-var mongojs = require("mongojs");
-var databaseUrl = "scrappitDB";
-var collections = ["destinyPosts"];
-var db = mongojs(databaseUrl, collections);
+var db = require ("../models");
 
-db.on("error", function(error) {
-  console.log("Database Error:", error);
-});
+// mongoose.Promise = Promise;
+// mongoose.connect("mongodb://localhost/scrappitDB", {
+//   useMongoClient: true
+// });
 
 
 router.get("/", function (req, res) {
@@ -38,31 +36,44 @@ router.get("/scrape", function (req, res) {
                 link: "https://www.reddit.com" + link
             });
         });
-
+        console.log(hdbObj);
         var hdbObj = {hits: results};
-        res.json(results);
-        // res.json(hdbObj);
+        res.render("index", hdbObj);
     });
 });
 
 router.get("/saved", function (req, res) {
     
-    db.destinyPosts.find({}, function(error, found) {
+    db.Post
+        .find({})
+        .then( function(found) {
         // Log any errors if the server encounters one
-        if (error) {
-          console.log(error);
-        }
-        // Otherwise, send the result of this query to the browser
-        else {
-          res.json(found);
-        }
-    });
-
+            res.render("saved", {hits: found});
+        })
+        .catch(function (derp) {
+            res.json(derp);
+        });
 });
 
 router.post("/save", function (req, res) {
-
+    console.log("Save body", req.body);
+    db.Post
+        .create(req.body)
+        .then(function (dbPost) {
+            send.json(dbPost)
+        })
+        .catch(function (derp) {
+            res.json(derp);
+        });
 });
 
+router.post("/removePost", function (req, res) {
+    console.log("Removing Post", req.body);
+    db.Post
+        .remove(req.body)
+        .catch(function (derp) {
+            res.json(derp);
+        });
+});
 
 module.exports = router;

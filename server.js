@@ -4,14 +4,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const hdb = require("express-handlebars");
-var mongoose = require("mongoose");
-
+const mongoose = require("mongoose");
+const logger = require('morgan');
 
 // App Setup
 // ======================================================
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+app.use(logger("dev"));
 app.use(bodyParser.urlencoded( { extended: true } ));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));

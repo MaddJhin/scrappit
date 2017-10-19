@@ -1,17 +1,33 @@
+    <div>
+        <div class="jumbotron">
+            <h1 class="display-3">Don't Reddit, Scrappit</h1>
+            <p class="lead">This is a simple scrape tool that scrapes /r/DestinyTheGame posts
+            </p>
+            <hr class="my-4">
+            <form class="form-inline" action="/scrape" method="GET">
+                <button id="scrape-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Scrape</button>
+            </form>
+        </div>
+
+        <div id="articles">
+            
+        </div>
+
+    </div>
+
 {{#each hits}}
 
-    <div class="card border-info m-3">
-        <form action="/save" method="POST">
-            <h4 class="card-header">            
-                <button type="button" class="btn btn-success">Save Article</button>
-            </h4>
-        </form>
-        
-        <div class="card-body">
-            <h4 class="card-title">
-                <a href="{{link}}">{{title}}</a>
-            </h4>
-        </div>
+<div class="card border-info m-3">
+    <h4 class="card-header">
+    <form action="/saved" method="GET">
+        <button data-link="{{link}}" data-title="{{title}}" type="button" class="btn btn-success save-btn">Save Article</button>
+    </form>
+    </h4>
+    <div class="card-body">
+        <h4 class="card-title">
+            <a href="{{link}}">{{title}}</a>
+        </h4>
     </div>
+</div>
 
 {{/each}}

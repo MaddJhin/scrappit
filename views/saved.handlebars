@@ -1,0 +1,19 @@
+{{#each hits}}
+
+<div class="card border-info m-3">
+    <h4 class="card-header">
+    <form >
+        <button data-link="{{link}}" data-title="{{title}}" type="button" class="btn btn-success save-btn">Add Note</button>
+    </form>
+    <form action="/removePost" method="POST">
+        <button data-title="{{title}}" type="button" class="btn btn-success remove-btn">Remove Post</button>
+    </form>
+    </h4>
+    <div class="card-body">
+        <h4 class="card-title">
+            <a href="{{link}}">{{title}}</a>
+        </h4>
+    </div>
+</div>
+
+{{/each}}
