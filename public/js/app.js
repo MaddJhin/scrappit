@@ -26,5 +26,9 @@ $(document).ready(function () {
             location.reload();
         });
     });
+
+    $('#exampleModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
     
 });
