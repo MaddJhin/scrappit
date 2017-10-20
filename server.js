@@ -27,7 +27,7 @@ app.set("view engine", "handlebars");
 // MongoDB setup
 // =======================================================
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/scrappitDB", { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/scrappitDB", { useMongoClient: true });
 var db = mongoose.connection;
 
 // Show any mongoose errors
