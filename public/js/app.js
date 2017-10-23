@@ -30,7 +30,7 @@ $(document).ready(function () {
     $('#comment-save').on("click", function (e) {
         var id = $(this).data('id');
 
-        console.log("Clicked Save Comment Button");
+        console.log("Clicked Save Comment Button for id", id);
         $.ajax({
             method: "POST",
             url: "/comment/" + id,

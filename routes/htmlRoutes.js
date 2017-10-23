@@ -120,22 +120,36 @@ router.get("/comment/:id", function(req, res) {
 
 router.post("/comment/:id", function(req, res){
     console.log("Saving Note", req.body);
-    
+
+    // var note = new Note({
+    //     body: req.body
+    // });
+
+    // note.save();
+
     db.Note
     .create(req.body)
     .then(function(dbNote) {
         console.log("Post Id", req.params.id);
         console.log("Note Reference", dbNote._id);
-        Post.update( { _id : req.params.id } , {$push: { notes: dbNote._id}});
-        // db.Post.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, {new: true});
+
+        var id = req.params.id;
+        var update = {$push: {notes: dbNote._id}};
+        db.Post.findOneAndUpdate({_id: id} , update, function(err, doc){
+            if (err)
+                throw err;
+        });    
     })
-    .then(function(dbPost) {
-      res.json(dbPost);
-    })
+    // .then(function(dbPost) {
+        // res.json(dbPost);
+        
+    // })
     .catch(function(err) {
       // If an error occurred, send it to the client
       res.json(err);
     });
+
+
 }); 
 
 router.get("/comments", function(req, res){
